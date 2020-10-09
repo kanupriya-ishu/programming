@@ -1,8 +1,3 @@
-/*
-	In this program, I have implemented Bredth First Search (BFS) algorithm using queue. 
-	Here queue is implemented with linked list.
-*/
-
 import java.util.*;
 public class BFS {
 	int V; // number of vertices in graph
@@ -26,7 +21,7 @@ public class BFS {
 	}
 	
 	// BFS traversal 
-	void BFS(int start)
+	void BFS_cal(int start)
 	{
 		boolean[] visited = new boolean[V];
 		
@@ -60,16 +55,32 @@ public class BFS {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BFS b = new BFS(4);
+		Scanner sc = new Scanner(System.in);
 		
-		b.addEdge(0, 1); 
-        b.addEdge(0, 2); 
-        b.addEdge(1, 2); 
-        b.addEdge(2, 0); 
-        b.addEdge(2, 3); 
-        b.addEdge(3, 3); 
-        
-        b.BFS(2); 
+		System.out.println("Enter number of vertices");
+		int n = sc.nextInt();
+		
+		BFS b = new BFS(n);
+		
+		System.out.println("Enter -1 to exit.");
+		int edgeFrom=0, edgeTo;
+		
+		while(edgeFrom!=-1)
+		{
+			System.out.println("Enter edge from vertex: ");
+			edgeFrom = sc.nextInt();
+			if(edgeFrom!=-1)
+			{
+				System.out.println("Enter edge to vertex: ");
+				edgeTo = sc.nextInt();
+				b.addEdge(edgeFrom, edgeTo);
+			}
+		}
+		
+		System.out.println("Enter starting vertex");
+		int start = sc.nextInt();
+        sc.close();
+        b.BFS_cal(start); 
 	}
 
 }
