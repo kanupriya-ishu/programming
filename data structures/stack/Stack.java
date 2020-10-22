@@ -46,5 +46,20 @@ public class Stack {
 			System.out.println("|"+s[i]+"|");
 		}
 	}
-
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Stack s = new Stack();
+		System.out.println(s.top);
+		s.push(10);
+		s.push(78);
+		s.push(69);
+		s.push(54);
+		s.pop();
+		s.push(7);
+		s.push(987);
+		s.pop();
+		s.printStack();
+	}
+	
 }
