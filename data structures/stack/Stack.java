@@ -49,17 +49,34 @@ public class Stack {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
 		Stack s = new Stack();
-		System.out.println(s.top);
-		s.push(10);
-		s.push(78);
-		s.push(69);
-		s.push(54);
-		s.pop();
-		s.push(7);
-		s.push(987);
-		s.pop();
-		s.printStack();
+		System.out.println("Choose: \n1. push \n2.pop \n3.print stack");
+		int choice = sc.nextInt();
+		while(choice < 4)
+		{
+			switch(choice)
+			{
+			case 1:
+				System.out.println("Enter number to push:");
+				int x = sc.nextInt();
+				s.push(x);
+				break;
+			case 2:
+				s.pop();
+				break;
+			case 3:
+				s.printStack();
+				break;
+			default:
+				System.out.println("Please enter a valid input");
+			}
+			
+			System.out.println("Choose: \n1. push \n2.pop \n3.print stack");
+			choice = sc.nextInt();
+		}
+		sc.close();
+	
 	}
 	
 }
