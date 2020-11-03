@@ -25,3 +25,71 @@
 	0 0 1
 */
 
+import java.util.*;
+public class SortArray0s1s2s {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number of testcases: ");
+		int T = sc.nextInt();
+		
+		for(int i=0; i<T; i++) {
+			System.out.println("Enter number of elements");
+			int n = sc.nextInt();
+			int[] arr = new int[n];
+			
+			System.out.println("Enter an array with 0s, 1s and 2s");
+			for(int j=0; j<n; j++)
+			{
+				arr[j] = sc.nextInt();
+			}
+			
+			int countZero = 0;
+			int countOne = 0;
+			int countTwo = 0;
+			
+			for(int j=0; j<n; j++)
+			{
+				if (arr[j]==0)
+				{
+					countZero++;
+				}
+				
+				else if(arr[j]==1)
+				{
+					countOne++;
+				}
+				else
+				{
+					countTwo++;
+				}
+			}
+			int len = 0;
+			for(int j=0; j<countZero; j++)
+			{
+				arr[len++] = 0;			
+			}
+			
+			for(int j=0; j<countOne; j++)
+			{
+				arr[len++] = 1;			
+			}
+			
+			for(int j=0; j<countTwo; j++)
+			{
+				arr[len++] = 2;			
+			}
+			
+			System.out.println("Sorted array is:");
+			for(int j=0; j<n; j++)
+			{
+				System.out.print(arr[j]+" ");
+			}
+			System.out.println();
+		}
+		
+		sc.close();
+	}
+
+}
