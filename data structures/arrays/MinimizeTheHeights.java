@@ -35,3 +35,58 @@
 	Output: Maximum difference is 2
 	arr[] = {3, 4, 5} 
 */
+
+import java.util.*;
+public class MinimizeTheHeights {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter number of elements in array");
+		int n = sc.nextInt();
+		
+		int[] arr = new int[n];
+		System.out.println("Enter the elements of array");
+		for(int j=0; j<n; j++)
+		{
+			arr[j] = sc.nextInt();
+		}
+		
+		System.out.println("Enter value of k");
+		int k = sc.nextInt();
+		sc.close();
+		
+		Arrays.sort(arr);
+		int small = arr[0] + k;
+		int big = arr[n-1] - k;
+		int ans = big - small;
+		
+		if (small>big) {
+			int temp = small;
+			small = big;
+			big = temp;
+		}
+		
+		for(int i=0; i<n; i++) {
+			int subtract = arr[i] - k;
+			int add = arr[i] + k;
+			
+			if (add<=big || subtract>=small)
+				continue;
+			
+			if (big-subtract < add-small)
+			{
+				small = subtract;
+			}
+			else
+			{
+				big = add;
+			}
+				
+		}
+		
+		System.out.println("Answer: "+Math.min(ans, big-small));
+	}
+
+}
