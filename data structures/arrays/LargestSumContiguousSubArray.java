@@ -28,3 +28,33 @@
 	1 ≤ N ≤ 106
 -107 ≤ A[i] <= 107
 */
+
+import java.util.*;
+public class LargestSumContiguousSubArray {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number of elements in array");
+		int n = sc.nextInt();
+		
+		int[] arr = new int[n];
+		System.out.println("Enter the elements of array");
+		for(int j=0; j<n; j++)
+		{
+			arr[j] = sc.nextInt();
+		}
+		sc.close();
+		
+		int max_till_now = arr[0];
+		int max_ending_here = arr[0];
+		
+		for(int j=0; j<n; j++) {
+			max_ending_here = Math.max(arr[j], max_ending_here+arr[j]);
+			max_till_now = Math.max(max_till_now, max_ending_here);
+		}
+		
+		System.out.println("Largest Sum Contiguous Sub Array: " + max_till_now);
+	}
+
+}
