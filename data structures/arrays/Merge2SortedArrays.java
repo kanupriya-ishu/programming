@@ -42,3 +42,54 @@
 	1 <= N, M <= 5*104
 	0 <= arr1i, arr2i <= 106
 */
+
+import java.util.*;
+public class Merge2SortedArrays {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter number of elements of array 1: ");
+		int n1 = sc.nextInt();
+		
+		int[] arr1 = new int[n1];
+		
+		System.out.println("Enter elements of array 1: ");
+		
+		for(int i=0; i<n1; i++) {
+			arr1[i] = sc.nextInt();
+		}
+		
+		System.out.println("Enter number of elements of array 2: ");
+		int n2 = sc.nextInt();
+		
+		int[] arr2 = new int[n2];
+		
+		System.out.println("Enter elements of array 2: ");
+		
+		for(int i=0; i<n2; i++) {
+			arr2[i] = sc.nextInt();
+		}
+		
+		sc.close();
+		
+		for (int i=n2-1; i>=0; i--) 
+        { 
+            int j, last = arr1[n1-1]; 
+            for (j=n1-2; j >= 0 && arr1[j] > arr2[i]; j--) 
+                arr1[j+1] = arr1[j]; 
+            if (j != n1-2 || last > arr2[i]) 
+            { 
+                arr1[j+1] = arr2[i]; 
+                arr2[i] = last; 
+            } 
+        }
+		
+		System.out.print("After Merging, First Array is: "); 
+        System.out.println(Arrays.toString(arr1)); 
+        System.out.print("Second Array is:  "); 
+        System.out.println(Arrays.toString(arr2)); 
+	}
+
+}
