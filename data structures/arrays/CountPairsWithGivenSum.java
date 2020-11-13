@@ -24,3 +24,37 @@
 	Your Task:
 	You don't need to read input or print anything. Your task is to complete the function getPairsCount() which takes arr[], n and k as input parameters and returns the number of pairs that have sum K.
 */
+
+import java.util.*;
+public class CountPairsWithGivenSum {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number of elements");
+		int n = sc.nextInt();
+		
+		int[] arr = new int[n];
+		System.out.println("Enter the elements of array");
+		for(int i=0; i<n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		
+		System.out.println("Enter the sum");
+		int sum = sc.nextInt();
+		
+		sc.close();
+		int count = 0;
+		for(int i=0; i<n; i++) {
+			for(int j=i+1; j<n; j++) {
+				if(arr[i]+arr[j]==sum) {
+					count++;
+				}
+			}
+		}
+		
+		System.out.println("Answer: "+count);
+	}
+
+}
