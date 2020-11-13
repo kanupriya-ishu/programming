@@ -27,3 +27,36 @@
 	Your Task:
 	You don't need to read input or print anything. Your task is to complete the function inversionCount() which takes the array arr[] and the size of the array as inputs and returns the inversion count of the given array.
 */
+
+import java.util.*;
+public class CountInversion {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the number of elements");
+		int n = sc.nextInt();
+		
+		int[] arr = new int[n];
+		System.out.println("Enter the elements of array");
+		for(int i=0; i<n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		
+		sc.close();
+		
+		int count=0;
+		for(int i=0; i<n; i++) {
+			
+			for(int j=i+1; j<n; j++) {
+				if(arr[j]<arr[i]) {
+					count++;
+				}
+			}
+		}
+		
+		System.out.println("Answer: "+count);
+	}
+
+}
