@@ -36,3 +36,48 @@
 	1 <= N <= 104
 	-105 <= a[i] <= 105
 */
+
+import java.util.*;
+public class SubarrayWithSum0 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter number of elements: ");
+		int n = sc.nextInt();
+		
+		int[] arr = new int[n];
+		System.out.println("Enter the elements of array: ");
+		for(int i=0; i<n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		
+		sc.close();
+		
+		int sum = 0;
+		HashSet<Integer> h = new HashSet<Integer>();
+		
+		System.out.println("Is there any subarray with sum equal to 0?");
+		
+		boolean flag=false;
+		for(int i=0; i<n; i++) {
+			
+			sum += arr[i];
+			
+			// if element is 0 OR sum is 0 OR sum is already present in HashSet , THEN sum of subarray is 0
+			
+			if (arr[i]==0 || sum==0 || h.contains(sum)) {
+				System.out.println("Yes");
+				flag = true;
+				break;
+			}
+			
+			h.add(sum);
+		}
+		
+		if (flag==false)
+			System.out.println("No");
+	}
+
+}
