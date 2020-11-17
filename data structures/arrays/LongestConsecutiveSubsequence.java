@@ -28,4 +28,45 @@
 	Constraints:
 	1 <= N <= 105
 	0 <= a[i] <= 105
-	*/
+*/
+
+import java.util.*;
+public class LongestConsecutiveSubsequence {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter number of elements: ");
+		int n = sc.nextInt();
+		
+		int[] arr = new int[n];
+		System.out.println("Enter the elements of array: ");
+		for(int i=0; i<n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		
+		sc.close();
+		
+		HashSet<Integer> set = new HashSet<Integer>();
+		int ans = 0;
+		
+		for(int i=0; i<n; i++) {
+			set.add(arr[i]);
+		}
+		
+		for(int i=0; i<n; i++) {
+			if (!set.contains(arr[i]-1)) {
+				int j=arr[i];
+				while(set.contains(j)) {
+					j++;
+				}
+				
+				ans = Math.max(ans, j-arr[i]);
+			}
+		}
+		
+		System.out.println("Length of the Longest consecutive subsequence is " + ans);
+	}
+
+}
