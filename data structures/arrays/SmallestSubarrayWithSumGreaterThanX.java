@@ -1,5 +1,7 @@
 /*
+Given an array of integers (A[])  and a number x, find the smallest subarray with sum greater than the given value.
 
+Note: The answer always exists. It is guaranteed that x doesn't exceed the summation of a[i] (from 1 to N).
 */
 public class SmallestSubarrayWithSumGraterThanX {
 
