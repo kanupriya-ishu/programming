@@ -2,7 +2,7 @@
 Median of 2 sorted arrays of different size
 */
 
-public class Test {
+public class MedianOf2SortedArraysOfDifferentLength {
 
     public static void main(String args[]) 
     {  
