@@ -34,3 +34,37 @@ A[3] = 444  //which is a palindrome number.
 A[4] = 555  //which is a palindrome number.
 As all numbers are palindrome so This will return 1.
 */
+
+import java.util.*;
+public class PalindromeArray {
+
+    public static void main(String args[]) 
+    {  
+    	int[] arr = {121, 131, 20};
+    	
+    	int n = arr.length;
+    	boolean flag = false;
+    	
+    	for(int i=0; i<n; i++) {
+    		
+    		int rev = 0;
+    		int temp = arr[i];
+    		while(temp!=0) {
+    			int rem = temp%10;
+    			rev = rev*10 + rem;
+    			temp /= 10;
+    		}
+    		System.out.println(rev);
+    		if(rev!=arr[i]) {
+    			flag = true;
+    			break;
+    		}
+    	}
+    	
+    	if(flag==true)
+    		System.out.println(0);
+    	else
+    		System.out.println(1);
+    }
+    
+}
