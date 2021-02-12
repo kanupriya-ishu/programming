@@ -28,3 +28,41 @@ Explanation: One possible arrangement
 is: {1, 2, 3}. If you return a valid
 arrangement, output will be 1.
 */
+
+import java.util.*;
+public class ThreeWayPartitioning {
+
+    public static void main(String args[]) 
+    {  
+    	int[] arr = {1, 14, 5, 20, 4, 2, 54, 20, 87, 98, 3, 1, 32};
+    	
+    	int lowVal = 20;
+    	int highVal = 20;
+    	
+    	int l=0, r=arr.length-1;
+    	
+    	for(int i=0; i<r; ) {
+    		
+    		if(arr[i]<lowVal) {
+    			int temp = arr[i];
+    			arr[i] = arr[l];
+    			arr[l] = temp;
+    			l++;
+    			i++;
+    		}
+    		
+    		else if(arr[i]>highVal) {
+    			int temp = arr[i];
+    			arr[i] = arr[r];
+    			arr[r] = temp;
+    			r--;
+    		}
+    		
+    		else
+    			i++;
+    	}
+    	
+    	System.out.println(Arrays.toString(arr));
+    }
+    
+}
