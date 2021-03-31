@@ -26,3 +26,29 @@ is 4 - 2 = 2 by choosing following M packets :
 {3, 2, 4}.
 
 */
+
+import java.util.*;
+public class Test {
+
+    public static void main(String args[]) 
+    {  
+    	// array of positive integers
+    	int[] arr = {7, 3, 2, 4, 9, 12, 56};
+    	
+    	int N = arr.length;
+    	
+    	// no. of students
+    	int M = 3;
+    	
+    	int min = Integer.MAX_VALUE;
+    	Arrays.sort(arr);
+    	for(int i=0; (i+M-1)<N; i++) {
+    		if(arr[i+M-1]-arr[i]<min) {
+    			min = arr[i+M-1]-arr[i];
+    		}
+    	}
+    	
+    	System.out.println("Answer: " + min);
+    }
+    
+}
