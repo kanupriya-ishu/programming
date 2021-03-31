@@ -28,7 +28,7 @@ is 4 - 2 = 2 by choosing following M packets :
 */
 
 import java.util.*;
-public class Test {
+public class ChocolateDistributionProblem {
 
     public static void main(String args[]) 
     {  
