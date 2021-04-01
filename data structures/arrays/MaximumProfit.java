@@ -23,3 +23,41 @@ Input:   price[] = {90, 80, 70, 60, 50}
 Output:  0
 Not possible to earn.
 */
+
+public class MaximumProfit {
+
+    public static void main(String args[]) 
+    {  
+    	int[] arr = {2, 30, 15, 10, 8, 25, 80};
+    	
+    	int n = arr.length;
+    	
+    	int[] profit = new int[n]; // in java, array is initialised with value 0
+    	
+    	// profit if only one transaction occurs
+    	// starting from the end index to the first index, subtract the current value with the max_value
+    	int max = arr[n-1];
+    	
+    	for(int i=n-2; i>=0; i--) {
+    		if(arr[i]>max)
+    			max=arr[i];
+    		
+    		profit[i] = Math.max(profit[i+1], max - arr[i]);
+    	}
+    	
+    	// profit if two transactions occur
+    	// start from first index to last, answer = profit if one transaction occur + (current value - minimum value)
+    	// final answer will be stored in profit[n-1]
+    	int min = arr[0];
+    	
+    	for(int i=1; i<n; i++) {
+    		if(arr[i]<min)
+    			min = arr[i];
+    		
+    		profit[i] = Math.max(profit[i-1], profit[i]+arr[i]-min);
+    	}
+    	
+    	System.out.println("Answer: " + profit[n-1]);
+    }
+    
+}
