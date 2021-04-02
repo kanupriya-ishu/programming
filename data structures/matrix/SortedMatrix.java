@@ -29,3 +29,30 @@ Output:
 Explanation:
 Sorting the matrix gives this result.
 */
+
+import java.util.*;
+public class SortedMatrix {
+
+    public static void main(String args[]) 
+    {  
+    	int arr[][] = { { 5, 4, 7 },
+                { 1, 3, 8 },
+                { 2, 9, 6 } };
+    	
+    	int rows = arr.length;
+    	int cols = arr[0].length;
+    	int len=0;
+    	
+    	int[] arr2 = new int[rows*cols];
+    	for(int i=0; i<rows; i++) {
+    		for(int j=0; j<cols; j++) {
+    			arr2[len++]=arr[i][j];
+    		}
+    	}
+    	
+    	Arrays.sort(arr2);
+    	
+    	System.out.println(Arrays.toString(arr2));
+    }
+   
+}
