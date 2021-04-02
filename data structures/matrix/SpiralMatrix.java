@@ -37,3 +37,48 @@ Constraints:
 1 <= R, C <= 100
 0 <= matrixi <= 100
 */
+
+public class SpiralMatrix {
+
+    public static void main(String args[]) 
+    {  
+    	int arr[][] = {{1, 2, 3, 4},
+    	           {5, 6, 7, 8},
+    	           {9, 10, 11, 12}};
+    	
+    	int rows = arr.length;
+    	int cols = arr[0].length;
+    	
+    	int i;
+    	int start_row=0, start_col=0;
+    	
+    	while(start_row<rows && start_col<cols) {
+    		
+    		for(i=start_col; i<cols; i++) {
+    			System.out.print(arr[start_row][i]+" ");
+    		}
+    		start_row++;
+    		
+    		for(i=start_row;  i<rows; i++) {
+    			System.out.print(arr[i][cols-1] + " ");
+    		}
+    		cols--;
+    		
+    		if(start_row<rows) {
+    			for(i=cols-1; i>=start_col; i--) {
+    				System.out.print(arr[rows-1][i] + " ");
+    			}
+    			rows--;
+    		}
+    		
+    		if(start_col<cols) {
+    			for(i=rows-1; i>=start_row; i--) {
+    				System.out.print(arr[i][start_col] + " ");
+    			}
+    			start_col++;
+    		}
+    	} 
+    	
+    }
+    
+}
