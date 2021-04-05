@@ -25,3 +25,32 @@ K = 7
 Output: 30
 Explanation: 30 is the 7th smallest element.
 */
+
+import java.util.*;
+public class KthElement {
+
+    public static void main(String args[]) 
+    {  
+    	int arr[][] = {{10, 20, 30, 40},
+        {15, 25, 35, 45},
+        {24, 29, 37, 48},
+        {32, 33, 39, 50}};
+    	
+    	int k=7;
+    	
+    	int rows = arr.length;
+    	int cols = arr[0].length;
+    	int len=0;
+    	
+    	int[] arr2 = new int[rows*cols];
+    	for(int i=0; i<rows; i++) {
+    		for(int j=0; j<cols; j++) {
+    			arr2[len++]=arr[i][j];
+    		}
+    	}
+    	
+    	Arrays.sort(arr2);
+    	
+    	System.out.println(arr2[k-1]);
+  }
+}
