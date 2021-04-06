@@ -15,7 +15,7 @@ Output: ["h","a","n","n","a","H"]
 */
 
 import java.util.*;
-public class Test {
+public class ReverseString {
 
     public static void main(String args[]) 
     {  
