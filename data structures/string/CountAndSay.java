@@ -23,3 +23,39 @@ countAndSay(2) = say "1" = one 1 = "11"
 countAndSay(3) = say "11" = two 1's = "21"
 countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 */
+
+import java.util.*;
+public class CountAndSay {
+
+    public static void main(String args[]) 
+    {  
+    	int n=6;
+    	String ans = countAndSay(n);
+    	System.out.println(ans);
+    }
+
+	public static String countAndSay(int n) {
+		if(n<=0)
+			return "";
+		
+		String res="1";
+		
+		while(n>1) {
+			StringBuilder cur = new StringBuilder(); // StringBuilder is mutable therefore it is efficient
+			
+			for(int i=0; i<res.length(); i++) {
+				int count = 1;
+				
+				while(i+1 < res.length() && res.charAt(i)==res.charAt(i+1)) {
+					count++;
+					i++;
+				}
+				cur.append(count).append(res.charAt(i));				
+			}
+			res = cur.toString();
+			n--;
+		}
+		
+		return res;
+	}     
+}
