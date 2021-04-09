@@ -20,3 +20,28 @@ Output: 2
 Input: str = "axxxy"
 Output: 2
 */
+
+import java.util.*;
+public class LongestSubsequence {
+
+    public static void main(String args[]) 
+    {  
+    	String s = "aabb";
+    	int n = s.length();
+    	
+    	int[][] l = new int[n+1][n+1];
+    	
+    	for(int i=1; i<=n; i++) {
+    		for(int j=1; j<=n; j++) {
+    			if(s.charAt(i-1)==s.charAt(j-1) && i!=j) {
+    				l[i][j] = l[i-1][j-1] + 1;
+    			}
+    			else {
+    				l[i][j] = Math.max(l[i-1][j], l[i][j-1]);
+    			}
+    		}
+    	}
+    	
+    	System.out.println(l[n][n]);
+    } 
+}
