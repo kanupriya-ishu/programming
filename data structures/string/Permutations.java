@@ -20,6 +20,8 @@ GBAS GBSA GSAB GSBA SABG SAGB SBAG
 SBGA SGAB SGBA
 Explanation:
 Given string ABSG has 24 permutations.
+
+Refrence: https://www.youtube.com/watch?v=GuTPwotSdYw
 */
 
 import java.util.*;
