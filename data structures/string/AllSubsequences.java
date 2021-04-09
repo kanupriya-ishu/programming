@@ -8,6 +8,8 @@ Output : a, b, c, ab, bc, ac, abc
 
 Input : aaa
 Output : a, aa, aaa
+
+Refrence: https://www.youtube.com/watch?v=KCEPvdLqlYI
 */
 
 import java.util.*;
