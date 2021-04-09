@@ -21,3 +21,56 @@ longest palindromes with same length.
 The result is the one with the least
 starting index.
 */
+
+import java.util.*;
+public class LongestPalindrome {
+
+    public static void main(String args[]) 
+    {  
+    	String s = "abc";
+    	int max = 1;
+    	int start = 0;
+    	for(int i=0; i<s.length(); i++) {
+    		for(int j=i; j<s.length(); j++) {
+    			String sub = s.substring(i, j+1);
+    			if(sub.equals(reverseString(sub))) {
+    				if(sub.length()>max) {
+    					start = i;
+    					max = sub.length();
+    				}
+    			}
+    		}
+    	}
+    	
+    	System.out.println(max);
+    	System.out.println(s.substring(start, start+max));
+    }
+
+    public static String reverseString(String s) {
+    	char[] str = s.toCharArray();
+    	int front = 0;
+        int rear = s.length() - 1;
+        
+        while(front < rear)
+        {
+            swap(str, front, rear);
+            front++;
+            rear--;
+        }
+        
+        String ans = "";
+        
+        for(int i=0; i<str.length; i++) {
+        	ans += str[i];
+        }
+        
+        return ans;
+    }
+    
+    public static void swap(char[] s, int front, int rear)
+    {
+        char temp = s[front];
+        s[front] = s[rear];
+        s[rear] = temp;
+    }    
+}
