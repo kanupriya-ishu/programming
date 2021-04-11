@@ -24,7 +24,7 @@ Explanation: Both strings are same
 */
 
 import java.util.*;
-public class Test {
+public class EditDistance {
 	
     public static void main(String args[]) 
     {  
