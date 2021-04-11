@@ -18,3 +18,49 @@ Explaination: As arr[] is the last
 permutation. So, the next permutation 
 is the lowest one.
 */
+
+import java.util.*;
+public class NextPermutation {
+	
+    public static void main(String args[]) 
+    {  
+    	char arr[] = { '5','3','4','9','7','6' };
+        int n = arr.length;
+        int i;
+        for(i=n-1; i>0; i--) {
+        	if(arr[i-1]<arr[i])
+        		break;
+        }
+        
+        if(i==0)
+        	System.out.println("Not possible");
+        
+        else {
+        	int x = arr[i-1], min = i;
+        	
+        	for(int j=i+1; j<n; j++) {
+        		if(arr[j]>x && arr[j]<arr[min])
+        			min = j;
+        	}
+        	
+        	swap(arr, i-1, min);
+        	
+        	Arrays.sort(arr, i, n);
+        	
+        	System.out.print("Ans: ");
+        	for(int j=0; j<n; j++) {
+        		System.out.print(arr[j]);
+        	}
+        }
+        
+    }
+    
+    static void swap(char ar[], int i, int j) 
+    {
+        char temp = ar[i];
+        ar[i] = ar[j];
+        ar[j] = temp;
+    }
+    
+
+}
