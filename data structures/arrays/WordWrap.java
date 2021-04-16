@@ -23,3 +23,29 @@ Line number 1: From word no. 1 to 1
 Line number 2: From word no. 2 to 3
 Line number 3: From word no. 4 to 4
 */
+
+import java.util.*;
+public class WordWrap {
+	
+	public static void main(String args[])
+	{
+		 int[] nums = {3,2,2,5};
+		 int k = 6;
+		 
+		 // Solved using Greedy method
+		 int line = 1;
+		 for(int i=0; i<nums.length; i++) {
+			 int sum = 0;
+			 sum = sum + nums[i];
+			 System.out.println("Line "+line + ": "+i);
+			 for(int j = i; sum<=k && j<nums.length; j++) {
+				 sum = sum + nums[j] + 1;
+				 if(sum<=k) {
+					 i++;
+					 System.out.println("Line "+line + ": "+i);
+				 }
+			 }
+			 line++;
+		 }
+	}
+}
