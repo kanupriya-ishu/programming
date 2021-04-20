@@ -27,4 +27,70 @@ Explanation: EEE can be found in first row
 twice at index 2 and index 10
 and in second row at 2 and 12
 */
+ 
+import java.util.*;
+public class SearchStringIn2DArray {
+	
+	static int row, col;
+	
+	// 8 directions
+	static int[] x = {0,0,-1,1,1,-1,1,-1};
+	static int[] y = {-1,1,0,0,1,-1,-1,1};
+	
+	public static void main(String args[])
+	{
+		 char arr[][] =  { { 'G', 'E', 'E', 'K', 'S', 'F', 'O', 'R', 'G', 'E', 'E', 'K', 'S' },
+			               { 'G', 'E', 'E', 'K', 'S', 'Q', 'U', 'I', 'Z', 'G', 'E', 'E', 'K' },
+			               { 'I', 'D', 'E', 'Q', 'A', 'P', 'R', 'A', 'C', 'T', 'I', 'C', 'E' } };
+		 
+		row = arr.length;
+		col = arr[0].length;
+		searchPattern(arr, "GEEKS");
 
+	}
+	
+	
+
+	private static void searchPattern(char[][] arr, String s) {
+		for (int i = 0; i < row; i++) {
+            for (int j= 0; j < col; j++) {
+                if (search2D(arr, i, j, s))
+                    System.out.println(
+                        "pattern found at " + i + ", " + j);
+            }
+        }		
+	}
+
+
+
+	private static boolean search2D(char[][] arr, int r, int c, String s) {
+		if(arr[r][c]!=s.charAt(0)) {
+			return false;
+		}
+		
+		int len = s.length();
+		
+		// search in all 8 directions
+		for(int dir=0; dir<8; dir++) {
+			
+			int k, row_dir = r + x[dir], col_dir = c + y[dir];
+			for(k=1; k<len; k++) {
+				if(row_dir>=row || col_dir>=col || row_dir<0 || col_dir<0) {
+					break;
+				}
+				
+				if(arr[row_dir][col_dir]!=s.charAt(k)) {
+					break;
+				}
+				
+				row_dir += x[dir];
+				col_dir += y[dir];
+			}
+			
+			if(k==len) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
