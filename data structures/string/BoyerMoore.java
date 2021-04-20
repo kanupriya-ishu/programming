@@ -14,3 +14,60 @@ Output: Pattern found at index 0
         Pattern found at index 9
         Pattern found at index 12
 */
+ 
+import java.util.*;
+public class BoyerMoore {
+	
+	static int NO_OF_CHARS = 256;
+	
+	// 8 directions
+	static int[] x = {0,0,-1,1,1,-1,1,-1};
+	static int[] y = {-1,1,0,0,1,-1,-1,1};
+	
+	public static void main(String args[])
+	{
+		char txt[] = "ABAAABCD".toCharArray();
+        char pat[] = "ABC".toCharArray();
+        search(txt, pat);
+
+	}
+
+	private static void search(char[] txt, char[] pat) {
+		int m = pat.length;
+		int n = txt.length;
+		
+		int badchar[] = new int[NO_OF_CHARS];
+		
+		badCharHeuristic(pat, m, badchar);
+		
+		int s = 0; // shifts
+		
+		while(s<=n-m) {
+			int j = m-1;
+			
+			while(j>=0 && pat[j]==txt[s+j]) {
+				j--;
+			}
+			
+			if(j<0) {
+				System.out.println("Patterns occur at shift = "+s);
+				s += (s+m < n)? m-badchar[txt[s+m]] : 1;
+			}
+			
+			else {
+				 s += Math.max(1, j - badchar[txt[s+j]]);
+			}
+		}
+		
+	}
+
+	private static void badCharHeuristic(char[] pat, int m, int[] badchar) {
+		for(int i=0; i<NO_OF_CHARS; i++) {
+			badchar[i] = -1;
+		}
+		
+		for(int i=0; i<m; i++) {
+			badchar[(int)pat[i]] = i;
+		}
+	}
+}
