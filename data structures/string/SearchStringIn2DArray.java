@@ -1,5 +1,8 @@
 /*
 Question:
+Given a 2D grid of characters and a word, find all occurrences of the given word in the grid. A word can be matched in all 8 directions at any point. Word is said to be found in a direction if all characters match in this direction (not in zig-zag form).
+The 8 directions are, Horizontally Left, Horizontally Right, Vertically Up, Vertically Down and 4 Diagonal directions.
+Example: 
 Input:  grid[][] = {"GEEKSFORGEEKS",
                     "GEEKSQUIZGEEK",
                     "IDEQAPRACTICE"};
@@ -24,3 +27,4 @@ Explanation: EEE can be found in first row
 twice at index 2 and index 10
 and in second row at 2 and 12
 */
+
