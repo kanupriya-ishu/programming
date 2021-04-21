@@ -25,3 +25,43 @@ For string "25011255255"
 allowed to change the string.
 250.11.255.255 is valid.
 */
+
+import java.util.*;
+
+public class AllIValidIpAddresses {
+
+	public static void main(String args[])
+	{
+		String s1 = "25525511135";
+	    System.out.println(restoreIpAddresses(s1));
+	}
+
+	private static List<String> restoreIpAddresses(String s) {
+		List<String> allIpAddresses = new ArrayList<>();
+		int[] path = new int[4];
+		snapshotIp(allIpAddresses, s, 0, path, 0);
+		return allIpAddresses;
+	}
+
+	private static void snapshotIp(List<String> allIpAddresses, String s, int builderIndex, int[] path, int segment) {
+		if(segment==4 && builderIndex==s.length()) {
+			allIpAddresses.add(path[0]+"."+path[1]+","+path[2]+"."+path[3]);
+			return;
+		}
+		else if(segment==4 || builderIndex==s.length()) {
+			return;
+		}
+		
+		for(int len=1; len<=3 && builderIndex+len<=s.length(); len++) {
+			String snapshot = s.substring(builderIndex, builderIndex+len);
+			int value = Integer.parseInt(snapshot);
+			if(value>255 || len>=2 && s.charAt(builderIndex)=='0') {
+				break;
+			}
+			path[segment] = value;
+			snapshotIp(allIpAddresses, s, builderIndex+len, path, segment+1);
+			path[segment] = -1;
+		}
+	}
+
+}
