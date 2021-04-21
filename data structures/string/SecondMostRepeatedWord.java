@@ -22,3 +22,51 @@ Output: for
 Explanation: "for" is the second most
 occurring string with frequency 2.
 */
+
+import java.util.*;
+
+public class SecondMostRepeatedWord {
+
+	public static void main(String args[]) {
+		String arr[] = { "ccc", "aaa", "ccc","ddd", "aaa", "aaa" };
+		Map<String, Integer> map = new HashMap<>();
+		
+		for(int i=0; i<arr.length; i++) {
+			if(!map.containsKey(arr[i])) {
+				map.put(arr[i], 1);
+			}
+			
+			else {
+				map.put(arr[i], map.get(arr[i])+1);
+			}
+		}
+		
+		String max_string = "";
+		String second_string = "";
+		
+		int max = Integer.MIN_VALUE;
+		int second = Integer.MIN_VALUE;
+		
+		for(Map.Entry i : map.entrySet()) {
+			String key = (String)i.getKey();
+			int value = (int)i.getValue();
+			
+			if(value>max) {
+				max = value;
+				max_string = key;
+			}
+		}
+		
+		for(Map.Entry i : map.entrySet()) {
+			String key = (String)i.getKey();
+			int value = (int)i.getValue();
+			
+			if(value>second && value!=max) {
+				second = value;
+				second_string = key;
+			}
+		}
+		
+		System.out.println(second_string);		
+	}
+}
