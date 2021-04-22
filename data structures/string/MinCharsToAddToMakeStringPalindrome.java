@@ -18,8 +18,6 @@ by adding two A's at front of string.
 import java.util.*;
 
 public class MinCharsToAddToMakeStringPalindrome {
-	
-	static final int MAX_CHARS =  256;
 
 	public static void main(String args[])
 	{
