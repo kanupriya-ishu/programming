@@ -25,8 +25,6 @@ Explanation : Sub-string -> "GEEKSFOR"
 import java.util.*;
 
 public class SmallestWindowOfAllCharactersOfSameString {
-	
-	static final int MAX_CHARS =  256;
 
 	public static void main(String args[])
 	{
