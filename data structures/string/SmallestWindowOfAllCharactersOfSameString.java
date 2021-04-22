@@ -21,3 +21,66 @@ Input : "GEEKSGEEKSFOR"
 Output : 8
 Explanation : Sub-string -> "GEEKSFOR"
 */
+
+import java.util.*;
+
+public class SmallestWindowOfAllCharactersOfSameString {
+	
+	static final int MAX_CHARS =  256;
+
+	public static void main(String args[])
+	{
+		String str = "aabcbcdbca";
+        System.out.println("Smallest window containing all distinct"
+                           + " characters is: " + findSubString(str));
+	}
+
+	private static String findSubString(String str) {
+		
+		int n = str.length();
+		
+		int distinct = 0;
+		
+		boolean[] visited = new boolean[MAX_CHARS];
+		Arrays.fill(visited, false);
+		
+		for(int i=0; i<n; i++) {
+			if(visited[str.charAt(i)]==false) {
+				visited[str.charAt(i)]=true;
+				distinct++;
+			}
+		}
+		
+		int start = 0, start_index = -1;
+		int min_len = Integer.MAX_VALUE;
+		
+		int count = 0;
+		int[] curr_count = new int[MAX_CHARS];
+		
+		for(int i=0; i<n; i++) {
+			curr_count[str.charAt(i)]++;
+			
+			if(curr_count[str.charAt(i)]==1)
+				count++;
+			
+			if(count==distinct) {
+				
+				while(curr_count[str.charAt(i)]>1) {
+					if(curr_count[str.charAt(i)]>1) {
+						curr_count[str.charAt(i)]--;
+						start++;
+					}
+				}
+				
+				int len_window = i-start + 1;
+				if(min_len > len_window) {
+					min_len = len_window;
+					start_index = start;
+				}
+			}
+		}
+		
+		return str.substring(start_index, start_index+min_len);
+	}
+
+}
