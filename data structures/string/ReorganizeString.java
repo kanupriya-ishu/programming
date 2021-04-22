@@ -22,8 +22,6 @@ Output: Not Possible
 import java.util.*;
 
 public class ReorganizeString {
-	
-	static final int MAX_CHARS =  256;
 
 	public static void main(String args[])
 	{
