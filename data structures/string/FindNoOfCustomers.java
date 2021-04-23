@@ -19,3 +19,58 @@ runCustomerSimulation (1, “ABCBCA”) should return 2 as ‘B’ and ‘C’ w
 
 runCustomerSimulation(1, “ABCBCADEED”) should return 3 as ‘B’, ‘C’ and ‘E’ were not able to get any computer.
 */
+
+import java.util.*;
+
+public class FindNoOfCustomers {
+	
+	private static int MAX_CHARS = 26;
+
+	public static void main(String args[])
+	{
+		System.out.println(findNoOfCustomers(2, "ABBAJJKZKZ".toCharArray())); 
+	    System.out.println(findNoOfCustomers(3, "GACCBDDBAGEE".toCharArray())); 
+	    System.out.println(findNoOfCustomers(3, "GACCBGDDBAEE".toCharArray())); 
+	    System.out.println(findNoOfCustomers(1, "ABCBCA".toCharArray())); 
+	}
+	
+	public static int findNoOfCustomers(int n, char[] seq) {
+		
+		// seen[i] = 0, indicates that customer 'i' is not in cafe 
+	    // seen[i] = 1, indicates that customer 'i' is in cafe but 
+	    //         computer is not assigned yet. 
+	    // seen[i] = 2, indicates that customer 'i' is in cafe and 
+	    //         has occupied a computer. 
+		char[] seen = new char[MAX_CHARS];
+		
+		int ans = 0;
+		
+		int occupied = 0;
+		
+		for(int i=0; i<seq.length; i++) {
+			 int index = seq[i] - 'A';
+			 
+			 if(seen[index]==0) {
+				 seen[index] = 1;
+				 
+				 if(occupied<n) {
+					 occupied++;
+					 seen[index] = 2;
+				 }
+				 
+				 else {
+					 ans++;
+				 }
+			 }
+			 
+			 else {
+				 if(seen[index]==2) {
+					 occupied--;
+				 }
+				 seen[index] = 0;
+			 }
+		}
+		
+		return ans;
+	}
+}
