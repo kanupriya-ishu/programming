@@ -22,3 +22,36 @@ Output: Yes
 Explanation: Replace '?' with 'e' and '*' with
 'forgeeks' and it will be same as pattern.
 */
+
+import java.util.*;
+
+public class WildcardStringMatching {
+
+	public static void main(String args[])
+	{
+		String first = "ge?ks*";
+		String second = "geeksforgeeks";
+		
+		System.out.println(match(first, second));
+	}
+
+	private static boolean match(String first, String second) {
+		
+		if(first.length()==0 && second.length()==0)
+			return true;
+		
+		if(first.length()>1 && first.charAt(0)=='*' && second.length()==0)
+			return false;
+		
+		if((first.length()>1 && first.charAt(0)=='?') || 
+		   (first.length()!=0 && second.length()!=0 && first.charAt(0)==second.charAt(0))) {
+			return match(first.substring(1), second.substring(1));
+		}
+		
+		if(first.length()>0 && first.charAt(0)=='*') {
+			return match(first.substring(1), second) || match(first, second.substring(1));
+		}
+		return false;
+	}
+
+}
