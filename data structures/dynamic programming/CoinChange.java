@@ -21,3 +21,29 @@ Explanation: Five Possible ways are:
 {2,2,2,2,2}, {2,2,3,3}, {2,2,6}, {2,3,5} 
 and {5,5}.
 */
+
+import java.util.*;
+
+public class CoinChange {
+
+	public static void main(String args[])
+	{
+		int val = 12;
+		int[] coins = { 1, 5, 10 };
+        System.out.println(calculateWays(val, coins));
+	}
+
+	private static int calculateWays(int val, int[] coins) {
+		int[] table = new int[val+1];
+		table[0] = 1;
+		int n = coins.length;
+		
+		for(int i=0; i<n; i++) {
+			for(int j=coins[i]; j<val+1; j++) {
+				table[j]+= table[j-coins[i]];
+			}
+		}
+		
+		return table[val];
+	}
+}
