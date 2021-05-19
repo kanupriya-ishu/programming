@@ -25,20 +25,14 @@ public class RodCuttingProblem {
 	}
 
 	private static int cutRod(int[] arr, int size) {
-		int[] np = new int[size + 1];
-		np[0] = 0;
 		
-		for(int i=1; i<size+1; i++) {
-			np[i] = arr[i-1];
-		}
-		
-		int[] dp = new int[np.length];
+		int[] dp = new int[size + 1];
 		
 		dp[0] = 0;
-		dp[1] = np[1];
+		dp[1] = arr[0];
 		
 		for(int i=2; i<dp.length; i++) {
-			dp[i] = np[i];
+			dp[i] = arr[i-1];
 			int left = 1;
 			int right = i-1;
 			
