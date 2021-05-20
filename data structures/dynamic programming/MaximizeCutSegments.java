@@ -23,3 +23,44 @@ Explanation: Here total length is 5, and
 the cut lengths are 5, 3 and 2. We can
 make two segments of lengths 3 and 2.
 */
+
+import java.util.*;
+
+public class MaximizeCutSegments {
+
+	public static void main(String args[])
+	{
+		int l = 100;
+		int x = 15, y = 23, z = 50;
+		System.out.println(maximumCuts(l, x, y, z));
+	}
+
+	private static int maximumCuts(int l, int x, int y, int z) {
+		int[] dp = new int[l+1];
+		Arrays.fill(dp, -1);
+		dp[0] = 0;
+		
+		for(int i=0; i<dp.length; i++) {
+			if (dp[i] == -1)
+                continue;
+			
+			if(i+x<=l) {
+				dp[i+x] = Math.max(dp[i+x], dp[i]+1);
+			}
+			
+			if(i+y<=l) {
+				dp[i+y] = Math.max(dp[i+y], dp[i]+1);
+			}
+			
+			if(i+z<=l) {
+				dp[i+z] = Math.max(dp[i+z], dp[i]+1);
+			}
+		}
+		
+		if (dp[l]==-1)
+		    return 0;
+		
+		return dp[l];
+	}
+
+}
