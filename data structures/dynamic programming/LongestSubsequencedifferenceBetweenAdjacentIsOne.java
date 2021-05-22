@@ -20,3 +20,42 @@ Explaination: All the elements can be
 included in the subsequence.
 
 */
+
+import java.util.*;
+
+public class LongestSubsequencedifferenceBetweenAdjacentIsOne {
+
+	public static void main(String args[])
+	{
+		int arr[] = {10, 9, 4, 5, 4, 8, 6};
+		int n = arr.length;
+		System.out.println(longestSubsequence(arr, n));
+	}
+
+	private static int longestSubsequence(int[] arr, int n) {
+		
+		int[] dp = new int[n];
+		
+		dp[0] = 0;
+		int max_len = 0;
+		
+		for(int i=1; i<n; i++) {
+			int max = 0; 
+			for(int j=0; j<i; j++) {
+				if (Math.abs(arr[i]-arr[j])==1) {
+					if(dp[j]>max) {
+						max = dp[j];
+					}
+					dp[i] = max + 1;
+				}
+			}
+			
+			
+			if(dp[i]>max_len) {
+				max_len = dp[i];
+			}
+		}
+		
+		return max_len+1;
+	}
+}
