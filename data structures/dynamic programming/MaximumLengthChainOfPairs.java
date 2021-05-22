@@ -23,3 +23,46 @@ Output: 1
 Explanation:The max length chain possible is only of
 length one.
 */
+
+import java.util.*;
+
+public class MaximumLengthChainOfPairs {
+
+	public static void main(String args[])
+	{
+		int arr[][] = {{778 ,887 }, {794 ,916}, {336, 387}, {493, 650}, {363, 422}, {28, 691}, {60, 764}, {541, 927}, {173, 427}, {212, 737}, {369 ,568}, {430 ,783}, {531 ,863}, {68 ,124}, {136 ,930}, {23 ,803}, {59, 70}, {168, 394 },
+				{12, 457}, {43, 230}, {374, 422}, {785, 920}, {199, 538}, {316, 325}, {371, 414}, {92, 527}, {957, 981}, {863, 874}, {171, 997}, {282, 306}, {85, 926}, {328, 337}, {506, 847}, {314, 730}};
+        int n = arr.length;
+        System.out.println(longestChain(arr, n));
+	}
+
+	private static int longestChain(int[][] arr, int n) {
+		
+		int[] dp = new int[n];
+		
+		Arrays.sort(arr, (a, b) -> Integer.compare(a[0],b[0]));
+		
+		Arrays.fill(dp, 1);
+		int max_len = 0;
+		
+		for(int i=1; i<n; i++) {
+			int max = 0;
+			for(int j=0; j<i; j++) {
+				if(arr[i][0]>arr[j][1]) {
+					if(dp[j]>max) {
+						max = dp[j];
+					}
+					dp[i] = max+1;
+				}
+			}
+			
+			if(dp[i]>max_len) {
+				max_len = dp[i];
+			}
+		}
+		
+		return max_len;
+		
+	}
+
+}
