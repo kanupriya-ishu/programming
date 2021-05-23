@@ -30,3 +30,45 @@ Output :
 25
  
 */
+
+import java.util.*;
+
+public class MaxSumOfPairsWithSpecificDifference {
+
+	public static void main(String args[])
+	{
+		int[] arr = {13, 21, 11, 2, 12, 4, 14, 28};
+		
+		int k = 2;
+		
+		System.out.println(maxSum(arr, k));
+	}
+
+	private static int maxSum(int[] arr, int k) {
+		int n = arr.length;
+		
+		if(n<2) {
+			return 0;
+			
+		}
+		
+		Arrays.sort(arr);
+
+		int[] dp = new int[n];
+		
+		for(int i=1; i<n; i++) {
+			dp[i] = dp[i-1];
+			if(arr[i]-arr[i-1]<k) {
+				if(i>=2) {
+					dp[i] = Math.max(dp[i], dp[i-2]+arr[i]+arr[i-1]);
+				}
+				
+				else {
+					dp[i] = Math.max(dp[i], arr[i] + arr[i-1]);
+				}
+			}
+		}
+		return dp[n-1];
+	}
+
+}
