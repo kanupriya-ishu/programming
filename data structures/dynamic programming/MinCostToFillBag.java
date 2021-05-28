@@ -24,10 +24,9 @@ Explanation: It is not possible to buy 5
 kgs of oranges
 */
 
-package test;
 import java.util.*;
 
-public class Test {
+public class MinCostToFillBag {
 
 	public static void main(String args[])
 	{
