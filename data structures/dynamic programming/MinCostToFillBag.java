@@ -23,3 +23,63 @@ Output: -1
 Explanation: It is not possible to buy 5 
 kgs of oranges
 */
+
+package test;
+import java.util.*;
+
+public class Test {
+
+	public static void main(String args[])
+	{
+		int val[] = {-1, 15, -1, 3, 14, 13, 10, 10};
+		int w = 810;
+        int n = val.length;
+        System.out.println(minCost(val, w, n));
+	}
+
+	private static int minCost(int[] cost, int w, int n) {
+		
+	 	Vector<Integer> val = new Vector<Integer>();
+        Vector<Integer> wt = new Vector<Integer>();
+      
+        // traverse the original cost[] array and skip
+        // unavailable packets and make val[] and wt[]
+        // array. size variable tells the available
+        // number of distinct weighted packets
+        int size = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (cost[i] != -1)
+            {
+                val.add(cost[i]);
+                wt.add(i + 1);
+                size++;
+            }
+        }
+        
+        n = size;
+        
+        // Further steps are same as unbounded knapsack
+        // Instead of finding max, find min
+		int[] dp = new int[w+1];	
+		dp[0] = 0;
+		for(int i=1; i<=w; i++) {
+			int min = Integer.MAX_VALUE;
+			for(int j=0; j<n; j++) {
+				if(wt.get(j)<=i) {
+					int v1 = i-wt.get(j);
+					int v2 = dp[v1];
+					if(v2!=-1) {
+						int v3 = v2 + val.get(j);
+						min = Math.min(min, v3);
+					}
+				}
+			}
+			dp[i] = min==Integer.MAX_VALUE?-1:min;
+		}
+
+		return dp[w];
+	}
+	
+
+}
