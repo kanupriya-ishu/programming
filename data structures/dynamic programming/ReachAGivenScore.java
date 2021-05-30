@@ -26,3 +26,32 @@ Explanation
 For 1st example when n = 8
 { 3, 5 } and {5, 3} are the two possible permutations but these represent the same cobmination. Hence output is 1.
 */
+
+import java.util.*;
+
+public class ReachAGivenScore {
+
+	public static void main(String args[])
+	{
+		int[] points = {3, 5, 10};
+		int n = points.length;
+		int totalScore = 20;
+		System.out.println(numberOfCombinations(points, n, totalScore));
+	}
+
+	private static int numberOfCombinations(int[] points, int n, int totalScore) {
+		
+		// this question is similar to coin change problem
+		int[] dp = new int[totalScore+1];
+		dp[0] = 1;
+		
+		for(int i=0; i<n; i++) {
+			for(int j=points[i]; j<=totalScore; j++) {
+				dp[j] += dp[j-points[i]];
+			}
+		}
+		
+		return dp[totalScore];
+	}
+
+}
