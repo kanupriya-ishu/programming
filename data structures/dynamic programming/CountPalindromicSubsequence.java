@@ -1,0 +1,25 @@
+/*
+Question:
+Given a string str of length N, you have to find number of palindromic subsequence (need not necessarily be distinct) which could be formed from the string str.
+Note: You have to return the answer module 109+7;
+ 
+
+Example 1:
+
+Input: 
+Str = "abcd"
+Output: 
+4
+Explanation:
+palindromic subsequence are : "a" ,"b", "c" ,"d"
+ 
+
+Example 2:
+
+Input: 
+Str = "aab"
+Output: 
+4
+Explanation:
+palindromic subsequence are :"a", "a", "b", "aa"
+*/
