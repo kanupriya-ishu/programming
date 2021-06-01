@@ -26,10 +26,10 @@ public class LongestPalindromicSubsequence {
 	public static void main(String args[])
 	{
 		String s = "abccbc";
-		System.out.println(countPalindromicSubsequence(s));
+		System.out.println(longestPalindromicSubsequence(s));
 	}
 
-	private static int countPalindromicSubsequence(String s) {
+	private static int longestPalindromicSubsequence(String s) {
 		
 		// dp[i][j] stores length of longest subsequence starting with s[i] and ending with s[j]
 		int[][] dp = new int[s.length()][s.length()];
