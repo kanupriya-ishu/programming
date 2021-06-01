@@ -39,7 +39,7 @@ public class CountPalindromicSubsequence {
 
 	private static int countPalindromicSubsequence(String s) {
 		
-		// dp[i][j] stores number of substrings starting with s[i] and ending with s[j]
+		// dp[i][j] stores number of subsequences starting with s[i] and ending with s[j]
 		int[][] dp = new int[s.length()][s.length()];
 		
 		/*
