@@ -22,3 +22,33 @@ possible derangements {1, 0, 3, 2} {1, 2, 3, 0}
 {1, 3, 0, 2}, {2, 3, 0, 1}, {2, 0, 3, 1}, {2, 3,
 1, 0}, {3, 0, 1, 2}, {3, 2, 0, 1} and {3, 2, 1, 0}
 */
+
+import java.util.*;
+
+public class CountDerangements {
+
+    public static void main(String[] args)
+    {     
+    	int n = 4;
+    	System.out.println(countDerangements(n));
+    }
+
+	private static int countDerangements(int n) {
+		int[] dp = new int[n+1]; // dp[i] denotes the number of derangements for i number
+		
+		dp[0] = 0; // no elements so no derangements
+		dp[1] = 0; // 1 element => {0} => no derangements possible
+		dp[2] = 1; // 2 elements => {0, 1} => {1, 0} => one derangement possible
+		
+		// Recursive relation to find derangement is:
+		// countDer(n) = (n - 1) * [countDer(n - 1) + countDer(n - 2)]
+		
+		for(int i=3; i<=n; i++) {
+			dp[i] = (i-1) * (dp[i-1] + dp[i-2]);
+		}
+		
+		return dp[n];
+	}
+
+}
++ 
