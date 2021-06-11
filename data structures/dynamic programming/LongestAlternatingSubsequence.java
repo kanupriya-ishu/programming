@@ -19,3 +19,29 @@ Explanation: There are several subsequences
 that achieve this length. 
 One is {1,17,10,13,10,16,8}.
 */
+
+import java.util.*;
+public class Test {
+
+    public static void main(String[] args)
+    {     
+    	int[] arr = {1, 5, 4};
+    	System.out.println(longestAlternatingSubsequence(arr));
+    }
+
+	private static int longestAlternatingSubsequence(int[] arr) {
+		
+		int inc=1, dec=1;
+		
+		for(int i=1; i<arr.length; i++) {
+			if(arr[i-1]<arr[i]) {
+				inc = dec + 1;
+			}
+			else if (arr[i] < arr[i - 1]){
+				dec = inc + 1;
+			}
+		}
+		
+		return Math.max(inc, dec);
+	}
+}
