@@ -20,3 +20,32 @@ Input: prices = [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 */
+
+package test;
+import java.util.*;
+public class Test {
+
+    public static void main(String[] args)
+    {     
+    	int[] arr = {7,1,5,3,6,4};
+    	System.out.println(maxProfit(arr));
+    }
+
+	private static int maxProfit(int[] arr) {
+		
+		int max_profit = 0;
+		int min = Integer.MAX_VALUE;
+		/*
+			Find the minimum element from start
+			At each point find out the maximum profit that can be made on ith day => arr[i] - min
+			keep a track of maximum profit in max_profit variable 
+		*/
+		for(int i=0; i<arr.length; i++) {
+			min = Math.min(min, arr[i]);
+			int profit = arr[i] - min;
+			max_profit = Math.max(max_profit, profit);
+		}
+		
+		return max_profit;
+	}
+}
