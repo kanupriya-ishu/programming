@@ -23,3 +23,52 @@ Input:   price[] = {90, 80, 70, 60, 50}
 Output:  0
 Not possible to earn.
 */
+
+import java.util.*;
+public class MaxProfitTwice{
+
+    public static void main(String[] args)
+    {     
+    	int[] arr = {0,7};
+    	System.out.println(maxProfit(arr));
+    }
+
+	private static int maxProfit(int[] arr) {
+		
+		int n = arr.length;
+		/*
+		 * In dp[i] store how much will be the max profit if stock were bought 
+		 * and sold on or before ith day
+		 * */
+		int[] dp = new int[n];
+		int min = arr[0];
+		
+		for(int i=1; i<n; i++) {
+			min = Math.min(min, arr[i]);
+			int profit = arr[i]-min;
+			dp[i] = Math.max(profit, dp[i-1]);
+		}
+		
+		/*
+		 * In dp2[i] store how much will be the max profit if stock were bought 
+		 * and sold on or after ith day
+		 * */
+		int[] dp2 = new int[n];
+		int max = arr[n-1];
+		for(int i=n-2; i>=0; i--) {
+			max = Math.max(max, arr[i]);
+			int profit = max - arr[i];
+			dp2[i] = Math.max(profit, dp2[i+1]);
+		}
+		
+		/*
+		 * The maximum profit will be max of dp[i] + dp2[i]
+		 * */
+		int max_profit = 0;
+		for(int i=0; i<n; i++) {
+			max_profit = Math.max(max_profit, dp[i]+dp2[i]);
+		}
+		
+		return max_profit;
+	}
+}
