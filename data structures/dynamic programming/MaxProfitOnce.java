@@ -21,9 +21,8 @@ Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 */
 
-package test;
 import java.util.*;
-public class Test {
+public class MaxProfitOnce {
 
     public static void main(String[] args)
     {     
