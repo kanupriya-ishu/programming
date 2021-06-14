@@ -28,3 +28,48 @@ Output: 22
 Explanation: The user collects maximum
 value as 22(7 + 15)
 */
+
+import java.util.*;
+public class OptimalGameStrategy {
+
+    public static void main(String[] args)
+    {     
+    	int[] arr = {5,3,7,10};
+    	System.out.println(maxMoney(arr));
+    }
+
+	private static int maxMoney(int[] arr) {
+		int n = arr.length;
+		int[][] dp = new int[n][n];
+		/*
+		 * For elements starting from i to j
+		 * And player 1 starts the game
+		 * Then player 1 has two options either to choose ith element or jth element
+		 * if player 1 chooses ith element: then elements left are from i+1 to j 
+		 * => player 2 can choose either i+1 or j => player 2 will choose such that player 1 gets minimum element
+		 * => player 1 will get min of(element i+2,j and element i+1,j-1)
+		 * 
+		 * if player 1 chooses jth element: then elements left are from i to j-1 
+		 * => player 2 can choose either i or j-1 => player 2 will choose such that player 1 gets minimum element
+		 * => player 1 will get min of(element i+1,j-1 and element i,j-2)
+		 * 
+		 * The max of above two will be stored at dp[i][j] where dp[i][j] represents array starting at i and ending at j
+		 */
+		for(int g=0; g<n; g++) {
+			for(int i=0, j=g; j<n; i++, j++) {
+				if(g==0) {
+					dp[i][j] = arr[i];
+				}
+				else if(g==1) {
+					dp[i][j] = Math.max(arr[i], arr[j]);
+				}
+				else {
+					dp[i][j] = Math.max(arr[i] + Math.min(dp[i+2][j], dp[i+1][j-1]),
+							arr[j]+Math.min(dp[i+1][j-1], dp[i][j-2]));
+				}
+			}
+		}
+		
+		return dp[0][n-1];
+	}
+}
