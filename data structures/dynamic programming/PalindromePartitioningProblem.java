@@ -56,41 +56,34 @@ public class PalindromePartitioningProblem {
 			}
 		}
 		
-		// dp2[i][j] stores the number of cuts required 
-		// for palindrome partitioning for string starting at i and ending at j
-		int[][] dp2 = new int[n][n];
+		// dp2[i] will store the minimum number of cuts from beginning to the i
+		int[] dp2 = new int[n];
 		
-		for(int g=0; g<n; g++) {
-			for(int i=0, j=g; j<n; i++, j++) {
-				if(g==0) {
-					// a single letter is palindrome so 0 cuts
-					dp2[i][j] = 0;
-				}
-				else if(g==1) {
-					// if both letters are same then 0 cuts otherwise 1 cut
-					dp2[i][j] = s.charAt(i)==s.charAt(j)?0:1;
-				}
-				else {
+		for(int j=0; j<n; j++) {
+			// if string ending at j is palindrome then 0 cuts are required
+			if(dp[0][j]) {
+				dp2[j] = 0;
+			}
+			
+			/*
+			 * check every suffix from j
+			 * if any suffix is palindrome then check the rest of the string
+			 * before the suffix in dp2
+			 * for all such suffix find the minimum number cuts
+			 * dp2 will hold the minimum + 1(the cut made at the suffix)
+			 * */
+			
+			else {
+				int min = Integer.MAX_VALUE;
+				for(int i=j; i>=0; i--) {
 					if(dp[i][j]) {
-						// if string is palindrome then 0 cuts are required
-						dp2[i][j] = 0;
-					}
-					else {
-						/*
-						 * start traversing from i to j making cut at each 
-						 * */
-						int min = Integer.MAX_VALUE;
-						for(int k=i; k<j; k++) {
-							int left = dp2[i][k];
-							int right = dp2[k+1][j];
-							
-							min = Math.min(min, left+right+1);
-						}
-						dp2[i][j] = min;
+						min = Math.min(min, dp2[i-1]);
 					}
 				}
+				dp2[j] = min + 1;
 			}
 		}
-		return dp2[0][n-1];
+		
+		return dp2[n-1];
 	}
 }
