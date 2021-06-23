@@ -44,3 +44,97 @@ Line number 2: From word no. 2 to 2
 
 Line number 3: From word no. 3 to 3 
 */
+
+import java.util.*;
+public class WordWrapProblem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = {3,2,2,5};
+		int k = 6;
+		wordWrap(arr, k);
+	}
+	
+	// function to print answer
+	private static void printp(int p[], int n) {
+		if(p[n]==1)
+			System.out.print(p[n] + " " + n + " ");
+		else {
+			printp(p, p[n]-1);
+			System.out.print(p[n] + " " + n + " ");
+		}
+	}
+
+	private static void wordWrap(int[] a, int k) {
+		// TODO Auto-generated method stub
+		int n = a.length;
+		int[] arr = new int[n+1];
+		for(int i=1; i<=n; i++) {
+			arr[i] = a[i-1];
+		}
+		
+		// space[i][j] stores the number of
+		// spaces at the end of line starting with ith word
+		int[][] space = new int[n+1][n+1];
+		// cost[i][j] stores the cost of space at the end of line
+		int[][] cost = new int[n+1][n+1];
+		// this stores the minimum cost till ith index
+		int[] c = new int[n+1];
+		// this stores the path to print
+		int[] p = new int[n+1];
+		
+		// infinity variable
+		int inf = Integer.MAX_VALUE;
+		
+		for(int i=1; i<=n; i++) {
+			// cost of ith element will be 
+			// total no. of chars - the no. of characters of ith word
+			space[i][i] = k - arr[i];
+			for(int j=i+1; j<=n; j++) {
+				// starting from next word of ith word, space left at end will be calculated by 
+				// remaining characters - characters of the current word - 1 (for space between words)
+				space[i][j] = space[i][j-1] - arr[j]-1;
+			}
+		}
+		
+		for(int i=1; i<=n; i++) {
+			for(int j=i; j<=n; j++) {
+				// if space is negative the word can't be accommodated therefore we will put inf value there
+				if(space[i][j]<0) {
+					cost[i][j] = inf;
+				}
+				
+				// if it is the last line and space is 0 or positive, cost will be 0
+				else if(j==n && space[i][j]>=0) {
+					cost[i][j] = 0;
+				}
+				// else square of space will be stored
+				else {
+					cost[i][j] = space[i][j] * space[i][j];
+				}
+			}
+		}
+		
+		c[0] = 0;
+		for(int i=1; i<=n; i++) {
+			// assume  initial cost to infinity
+			c[i] = inf;
+			for(int j=1; j<=i; j++) {
+				// if previous cost is not infinity and 
+				// previous cost + cost of current word 
+				// is less than current cost then that 
+				// will stored as answer and p will store 
+				// the index for path
+				if(c[j-1]!=inf && cost[j][i]!=inf &&
+					c[j-1]+cost[j][i] < c[i]) {
+					c[i] = c[j-1] + cost[j][i];
+					p[i] = j;
+				}
+			}
+		}
+		
+		printp(p, n);
+		
+	}
+
+}
