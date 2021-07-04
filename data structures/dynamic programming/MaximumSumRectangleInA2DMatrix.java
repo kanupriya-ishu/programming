@@ -65,7 +65,7 @@ public class MaximumSumRectangleInA2DMatrix {
 		 * sum so far.*/
 		
 		
-		for(int left=0; left<rows; left++) {
+		for(int left=0; left<cols; left++) {
 			Arrays.fill(dp, 0);
 			for(int right=left; right<cols; right++) {
 				for(int i=0; i<rows; i++) {
