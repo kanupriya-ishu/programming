@@ -18,3 +18,26 @@ Arr[] = {1}
 Output: 1
 Explanation: Here Arr[1] = 1 exists.
 */
+
+import java.util.*;
+public class ValueEqualToIndex {
+	
+	public static void main(String[] args) {
+		int[] arr = {15, 2, 45, 12, 7};
+		int n = arr.length;
+		System.out.println(valueEqualToIndex(arr, n));
+	}
+
+	private static ArrayList<Integer> valueEqualToIndex(int[] arr, int n) {
+		ArrayList<Integer> ans = new ArrayList<>();
+		
+		for(int i=0; i<n; i++) {
+			if(arr[i]==i+1) {
+				ans.add(arr[i]);
+			}
+		}
+		
+		return ans;
+	}
+}
+
