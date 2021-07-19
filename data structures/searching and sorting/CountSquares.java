@@ -21,3 +21,21 @@ Explanation:
 1 is the only Perfect Square
 less than 3. So, the Output is 1.
 */
+
+import java.util.*;
+public class CountSquares {
+	
+	public static void main(String[] args) {
+		int n = 3;
+		System.out.println(countSquares(n));
+	}
+
+	private static int countSquares(int n) {
+		int i = 1;
+		while(i*i<n) {
+			i++;
+		}
+		return i-1;
+	}
+}
+
