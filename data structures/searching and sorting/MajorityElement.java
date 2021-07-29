@@ -31,3 +31,46 @@ than N/2 times, so it is
 the majority element.
 */
 
+package solution;
+import java.util.*;
+public class MajorityElement {
+	
+	public static void main(String[] args) {
+		int[] arr = {1,2,3} ;
+		int n = arr.length;
+		System.out.println(findMajority(arr, n));
+	}
+
+	private static int findMajority(int[] arr, int n) {
+		
+		int el=0;
+		int count = 0;
+		
+		// Moore's Voting Algorithm
+		for(int a: arr) {
+			if(count == 0) {
+				el = a;
+			}
+			if(el==a) {
+				count++;
+			}
+			else {
+				count--;
+			}
+		}
+
+		int count2 = 0;
+		for(int i=0; i<n; i++) {
+			if(arr[i] == el) {
+				count2++;
+			}
+		}
+		
+		if(count2>n/2) {
+			return el;
+		}
+		
+		return -1;
+	}
+}
+
