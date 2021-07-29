@@ -16,3 +16,30 @@ Input : arr[] = {20, 40, 50, 70, 70, 60}
 Output : 5
 The index of 60 is 5
 */
+
+package solution;
+import java.util.*;
+public class SearchWhereAdjacentDifferByAtMostK {
+	
+	public static void main(String[] args) {
+		int[] arr = {20, 40, 50, 70, 70, 60}  ;
+		int n = arr.length;
+		int x = 60;
+		int k = 20;
+		System.out.println(search(arr, n, x, k));
+	}
+
+	private static int search(int[] arr, int n, int x, int k) {
+		
+		for(int i=0; i<n; i++) {
+			if(arr[i]==x) {
+				return i;
+			}
+			
+			i += Math.max(1, Math.abs(arr[i]-x)/k);
+		}
+		return -1;
+	}
+	
+}
+
