@@ -20,3 +20,31 @@ a[] = {1,2,3}
 Output: 4
 Explanation: 1+3=4
 */
+
+package solution;
+import java.util.*;
+public class Solution {
+	
+	public static void main(String[] args) {
+		int[] arr = {5,5,10,100,10,5};
+		int n = arr.length;
+		System.out.println(findMax(arr, n));
+	}
+
+	private static int findMax(int[] arr, int n) {
+		// inc contains max value of non adjacent elements including the ith elemnt
+		int inc = arr[0];
+		// exc contains max value of non adjacent elements excluding the ith elemnt
+		int exc = 0;
+		
+		for(int i=1; i<n; i++) {
+			// New excluded element will be maximum of previous exc and inc
+			int new_exc = Math.max(exc, inc);
+			inc = exc + arr[i];
+			exc = new_exc;
+		}
+		
+		return Math.max(inc, exc);
+	}
+
+}
