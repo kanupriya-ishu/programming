@@ -27,3 +27,37 @@ Output:
 0 12
 */
 
+package solution;
+import java.util.*;
+public class ProductArrayPuzzle {
+	
+	public static void main(String[] args) {
+		int[] arr = {10, 3, 5, 6, 2};
+		int n = arr.length;
+		System.out.println(Arrays.toString(productArray(arr, n)));
+	}
+
+	private static long[] productArray(int[] arr, int n) {
+		long[] res = new long[n];
+		
+		long prod = 1;
+		
+		// calculate cumulative product from left and store in res
+		for(int i=0; i<n; i++) {
+			prod *= arr[i];
+			res[i] = prod;
+		}
+		
+		// store cumulative product from right in prod
+		// multiply left and right products and store in res
+		prod = 1;
+		for(int i=n-1; i>0; i--) {
+			res[i] = res[i-1] * prod;
+			prod *= arr[i];
+		}
+		res[0] = prod;
+		
+		return res;
+	}	
+	
+}
