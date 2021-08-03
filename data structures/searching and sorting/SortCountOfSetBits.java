@@ -40,3 +40,59 @@ Explanation:
 hence the non-increasing sorted order is
 {3, 5, 6}, {1, 2, 4}
 */
+
+package solution;
+import java.util.*;
+import java.util.stream.*;
+public class SortCountOfSetBits {
+	
+	public static void main(String[] args) {
+		int[] arr = {10, 3, 5, 6, 2};
+		int n = arr.length;
+		sortBySetBitCount(arr, n);
+	}
+
+	/*
+	 * Create a MultiMap whose key values will be the negative of the number of set-bits of the element.
+	 * Traverse the array and do following for each element:
+	 * Count the number set-bits of this element. Let it be ‘setBitCount’ count.insert({(-1) * setBitCount, element})
+	 * Traverse ‘count’ and print the second elements.
+	 * */
+	static void sortBySetBitCount(int[] arr, int n)
+	  {
+	    ArrayList<ArrayList<Integer>> count = new ArrayList<ArrayList<Integer>>();
+	 
+	    // Iterate over all values and
+	    // insert into multimap
+	    for( int i = 0 ; i < n ; ++i )
+	    {
+	      count.add(new ArrayList<Integer>(Arrays.asList((-1) * countSetBits(arr[i]), arr[i])));
+	    }
+	 
+	    Collections.sort(count, new Comparator<ArrayList<Integer>>() {   
+	      @Override
+	      public int compare(ArrayList<Integer> o1, ArrayList<Integer> o2) {
+	        return o1.get(0).compareTo(o2.get(0));
+	      }              
+	    });
+	 
+	    for(int i = 0; i < count.size(); i++)
+	    {
+	      System.out.print(count.get(i).get(1) + " ");
+	    }
+	 
+	  }
+	
+
+	static int countSetBits(int n)
+    {
+        int count = 0;
+        while (n > 0) {
+            count += n & 1;
+            n >>= 1;
+        }
+        return count;
+    }
+	
+	
+}
