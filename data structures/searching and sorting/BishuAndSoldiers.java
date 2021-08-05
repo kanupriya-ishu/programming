@@ -49,3 +49,73 @@ In the first round, Bishu's power is 3, which is greater than 3 soldiers, with t
 
 Similarly for the next round.
 */
+
+package solution;
+import java.util.*;
+public class BishuAndSoldiers {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		
+		for(int i=0; i<n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int q = sc.nextInt();
+		
+		int[] power = new int[q];
+		for(int i=0; i<q; i++) {
+			power[i] = sc.nextInt();
+		}
+		
+		Arrays.sort(arr);
+		
+		int sum[] = new int[n];
+		int tot = 0;
+		for(int i=0; i<n; i++) {
+			tot += arr[i];
+			sum[i] = tot;
+		}
+		for(int i=0; i<q; i++) {
+			int index = binarySearch(arr, power[i]);
+			if(index==-1) {
+				System.out.println(0 + " " + 0);
+			}
+			else
+				System.out.println((index+1) + " " + sum[index]);
+		}
+
+	}
+	
+	public static int binarySearch(int[] arr, int target) {
+		int n = arr.length;
+		int l = 0; 
+		int r = n-1;
+		
+		if(arr[n-1]<target) {
+			return n-1;
+		}
+		
+		if(arr[0]>target) {
+			return -1;
+		}
+		
+		while(l<=r) {
+			int mid = l + (r-l)/2;
+			if(arr[mid]==target)
+				return mid;
+			else if(arr[mid]<target) {
+				if(arr[mid+1]>target && mid+1<n-1) {
+					return mid;
+				}
+				l = mid+1;
+			}
+			else {
+				r = mid-1;
+			}
+		}
+		
+		return -1;
+	}
+}
