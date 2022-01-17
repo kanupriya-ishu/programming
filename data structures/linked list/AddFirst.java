@@ -1,5 +1,5 @@
 /*
- * Question: Get value in linked list
+ * Question: Add first in linked list
  * 
  * Sample input:
  * addLast 10
