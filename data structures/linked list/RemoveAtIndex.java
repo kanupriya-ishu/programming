@@ -1,5 +1,5 @@
 /*
- * Question: Reverse a linked list- Pointer iterative
+ * Question: Remove at index in linked list
  * 
  * Sample input:
  * addLast 10
